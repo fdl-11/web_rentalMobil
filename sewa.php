@@ -33,20 +33,20 @@ require 'function.php';
                             </div>
 
                             <div class="sb-sidenav-menu-heading">Menu</div>
-                            <a class="nav-link" href="index.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-cut"></i></div>
+                        <a class="nav-link" href="index.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
                             Mobil
                         </a>
                         <a class="nav-link" href="pegawai.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>
                             Pegawai
                         </a>
                         <a class="nav-link" href="peminjam.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                             Peminjam
                         </a>
                         <a class="nav-link" href="sewa.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
                             Sewa
                         </a>
                     </div>
