@@ -26,32 +26,28 @@ require 'function.php';
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
-                    <div class="nav">
+                <div class="nav">
                             <div>
                                 <h3 class="sb-sidenav-menu-heading" style="margin-left: 60px;">Welcome</h3>
                                 <img src="assets/img/settings.png" alt="" style="margin-left: 70px;">
                             </div>
 
                             <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link" href="index.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-cut"></i></div>
-                            Cabang
-                        </a>
-                        <a class="nav-link" href="extra.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
-                             Pelayanan Extra
-                        </a>
-                        <a class="nav-link" href="transaksi.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
-                            Transaksi
+                            <a class="nav-link" href="index.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
+                            Mobil
                         </a>
                         <a class="nav-link" href="pegawai.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>
                             Pegawai
                         </a>
-                        <a class="nav-link" href="log.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-history"></i></div>
-                            Log
+                        <a class="nav-link" href="peminjam.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                            Peminjam
+                        </a>
+                        <a class="nav-link" href="sewa.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
+                            Sewa
                         </a>
                     </div>
                 </div>
@@ -75,26 +71,24 @@ require 'function.php';
                                         <tr>
                                             <th>id_pegawai</th>
                                             <th>nama_pegawai</th>
-                                            <th>alamat</th>
-                                            <th>cabang</th>
-                                            <th>Action</th>
+                                            <th>jobdesk</th>
+                                            <th>no_telp</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $tampilpgw = mysqli_query($conn, "select * from pegawai left join cabang on pegawai.id_cabang=cabang.id_cabang");
-                                        while ($data = mysqli_fetch_array($tampilpgw)) {
+                                        $tampilpgw = mysqli_query($conn, " SELECT * FROM `pegawai`");
+                                        while ($data = mysqli_fetch_array($tampilpgw)){
                                             $id_pegawai = $data['id_pegawai'];
                                             $nama_pegawai = $data['nama_pegawai'];
-                                            $alamat_pgw = $data['alamat_pgw'];
-                                            $nama_cabang = $data['nama_cabang'];
-                                            $id_cabang = $data['id_cabang'];
+                                            $jobdesk = $data['jobdesk'];
+                                            $no_telp = $data['no_telp'];
                                         ?>
                                             <tr>
                                                 <td><?= $id_pegawai; ?></td>
                                                 <td><?= $nama_pegawai; ?></td>
-                                                <td><?= $alamat_pgw; ?></td>
-                                                <td><?= $nama_cabang; ?></td>
+                                                <td><?= $jobdesk; ?></td>
+                                                <td><?= $no_telp; ?></td>
                                                 <td>
                                                     <button style="margin: 2px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatepegawai<?= $id_pegawai; ?>">Update</button>
                                                     <button style="margin: 2px;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletepegawai<?= $id_pegawai; ?>">Delete</button>
@@ -117,22 +111,9 @@ require 'function.php';
                                                                 <br />
                                                                 <input type="text" name="nama_pegawai" value="<?= $nama_pegawai; ?>" class="form-control">
                                                                 <br />
-                                                                <input type="text" name="alamat_pgw" value="<?= $alamat_pgw; ?>" class="form-control">
+                                                                <input type="text" name="jobdesk" value="<?= $jobdesk; ?>" class="form-control">
                                                                 <br />
-                                                                <select name="id_cabang" class="form-control">
-                                                                    <option selected value="<?= $id_cabang; ?>"></option>
-                                                                    <?php
-                                                                    $tampilancabang = mysqli_query($conn, "select * from cabang");
-                                                                    while ($fetcharray = mysqli_fetch_array($tampilancabang)) {
-                                                                        $nama_cabang = $fetcharray['nama_cabang'];
-                                                                        $id_cabang = $fetcharray['id_cabang'];
-                                                                    ?>
-                                                                        <option value="<?= $id_cabang; ?>"><?= $nama_cabang; ?></option>
-
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                </select>
+                                                                <input type="text" name="no_telp" value="<?= $no_telp; ?>" class="form-control">
                                                                 <br />
                                                                 <input type="hidden" name="id_pegawai" value="<?= $id_pegawai; ?>">
                                                                 <br />
@@ -208,22 +189,9 @@ require 'function.php';
                     <br />
                     <input type="text" name="nama_pegawai" placeholder="nama_pegawai" class="form-control">
                     <br />
-                    <input type="text" name="alamat_pgw" placeholder="alamat_pgw" class="form-control">
+                    <input type="text" name="jobdesk" placeholder="jobdesk" class="form-control">
                     <br />
-                    <select name="id_cabang" class="form-control">
-                        <option selected value="<?= $id_cabang; ?>">pilih cabang</option>
-                        <?php
-                        $tampilancabang = mysqli_query($conn, "select * from cabang");
-                        while ($fetcharray = mysqli_fetch_array($tampilancabang)) {
-                            $nama_cabang = $fetcharray['nama_cabang'];
-                            $id_cabang = $fetcharray['id_cabang'];
-                        ?>
-                            <option value="<?= $id_cabang; ?>"><?= $nama_cabang; ?></option>
-
-                        <?php
-                        }
-                        ?>
-                    </select>
+                    <input type="text" name="no_telp" placeholder="no_telp" class="form-control">
                     <br />
                     <button type="submit" name="addpegawai" class="btn btn-primary">Tambah</button>
                 </div>
