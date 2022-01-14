@@ -106,10 +106,10 @@ if (isset($_POST['deletepmj'])) {
 if (isset($_POST['addpegawai'])) {
 	$id_pegawai = $_POST['id_pegawai'];
 	$nama_pegawai = $_POST['nama_pegawai'];
-	$alamat_pgw = $_POST['alamat_pgw'];
-	$id_cabang = $_POST['id_cabang'];
+	$jobdesk = $_POST['jobdesk'];
+	$no_telp = $_POST['no_telp'];
 
-	$addkry = mysqli_query($conn, "insert into pegawai (id_pegawai, nama_pegawai, alamat_pgw, id_cabang) values ('$id_pegawai', '$nama_pegawai', '$alamat_pgw', '$id_cabang')");
+	$addkry = mysqli_query($conn, "insert into pegawai (id_pegawai, nama_pegawai, jobdesk, no_telp) values ('$id_pegawai', '$nama_pegawai', '$jobdesk', '$no_telp')");
 	if ($addkry) {
 		header('location:pegawai.php');
 	} else {
@@ -122,10 +122,10 @@ if (isset($_POST['addpegawai'])) {
 if (isset($_POST['updatepegawai'])) {
 	$id_pegawai = $_POST['id_pegawai'];
 	$nama_pegawai = $_POST['nama_pegawai'];
-	$alamat_pgw = $_POST['alamat_pgw'];
-	$id_cabang = $_POST['id_cabang'];
+	$jobdesk = $_POST['jobdesk'];
+	$no_telp = $_POST['no_telp'];
 
-	$updatekry = mysqli_query($conn, "update pegawai set id_pegawai='$id_pegawai', nama_pegawai='$nama_pegawai', alamat_pgw='$alamat_pgw', id_cabang='$id_cabang' where id_pegawai='$id_pegawai'");
+	$updatekry = mysqli_query($conn, "update pegawai set id_pegawai='$id_pegawai', nama_pegawai='$nama_pegawai', jobdesk='$jobdesk', no_telp='$no_telp' where id_pegawai='$id_pegawai'");
 	if ($updatekry) {
 		header('location:pegawai.php');
 	} else {
