@@ -101,8 +101,8 @@ require 'function.php';
                                                 <td><?= $warna; ?></td>
                                                 <td><?= $bahan_bakar; ?></td>
                                                 <td>
-                                                    <button style="margin: 2px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalupdate<?= $id_mobil; ?>">Update</button>
-                                                    <button style="margin: 2px;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modaldelete<?= $id_mobil; ?>">Delete</button>
+                                                    <button style="margin: 2px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalupdate<?= $id_mobil; ?>">Edit</button>
+                                                    <button style="margin: 2px;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modaldelete<?= $id_mobil; ?>">Hapus</button>
                                                 </td>
                                             </tr>
 
