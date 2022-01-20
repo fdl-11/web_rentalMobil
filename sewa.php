@@ -110,8 +110,8 @@ require 'function.php';
                                                 <td><?= $harga; ?></td>
                                                 <td><?= $denda; ?></td>
                                                 <td>
-                                                <button style="margin: 2px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatesewa<?= $no_sewa; ?>">Update</button>
-                                                    <button style="margin: 2px;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletesewa<?= $no_sewa; ?>">Delete</button>
+                                                <button style="margin: 2px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatesewa<?= $no_sewa; ?>">Edit</button>
+                                                    <button style="margin: 2px;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletesewa<?= $no_sewa; ?>">Hapus</button>
                                                 </td>
                                             </tr>
 
