@@ -90,8 +90,8 @@ require 'function.php';
                                                 <td><?= $jobdesk; ?></td>
                                                 <td><?= $no_telp; ?></td>
                                                 <td>
-                                                    <button style="margin: 2px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatepegawai<?= $id_pegawai; ?>">Update</button>
-                                                    <button style="margin: 2px;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletepegawai<?= $id_pegawai; ?>">Delete</button>
+                                                    <button style="margin: 2px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatepegawai<?= $id_pegawai; ?>">Edit</button>
+                                                    <button style="margin: 2px;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletepegawai<?= $id_pegawai; ?>">Hapus</button>
                                                 </td>
                                             </tr>
 
