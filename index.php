@@ -77,6 +77,7 @@ require 'function.php';
                                             <th>jenis</th>
                                             <th>warna</th>
                                             <th>bahan bakar</th>
+                                            <th>gambar</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -91,6 +92,7 @@ require 'function.php';
                                             $jenis = $data['jenis'];
                                             $warna = $data['warna'];
                                             $bahan_bakar = $data['bahan_bakar'];
+                                            $gambar = $data['gambar'];
                                         ?>
                                             <tr>
                                                 <td><?= $id_mobil; ?></td>
@@ -100,6 +102,7 @@ require 'function.php';
                                                 <td><?= $jenis; ?></td>
                                                 <td><?= $warna; ?></td>
                                                 <td><?= $bahan_bakar; ?></td>
+                                                <td><img src="img/<?= $gambar; ?>" width="50"></td>
                                                 <td>
                                                     <button style="margin: 2px;" type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalupdate<?= $id_mobil; ?>">Edit</button>
                                                     <button style="margin: 2px;" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modaldelete<?= $id_mobil; ?>">Hapus</button>
@@ -116,8 +119,9 @@ require 'function.php';
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form method="POST">
+                                                        <form method="POST" enctype="multipart/form-data">
                                                             <div class="modal-body">
+                                                                <input type="hidden" name="gambarLama" value="<?= $gambar; ?>">
                                                                 <input type="text" name="id_mobil" value="<?= $id_mobil; ?>" class="form-control" required>
                                                                 <br />
                                                                 <input type="text" name="plat" value="<?= $plat; ?>" class="form-control" required>
@@ -131,6 +135,8 @@ require 'function.php';
                                                                 <input type="text" name="warna" value="<?= $warna; ?>" class="form-control" required>
                                                                 <br />
                                                                 <input type="text" name="bahan_bakar" value="<?= $bahan_bakar; ?>" class="form-control" required>
+                                                                <br />
+                                                                <input type="file" name="gambar" id="gambar" class="form-control" value="c:img/<?= $gambar; ?>" >
                                                                 <br />
                                                                 <input type="hidden" name="id_mobil" value="<?= $id_mobil; ?>">
                                                                 <br />
@@ -201,7 +207,7 @@ require 'function.php';
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="text" name="id_mobil" placeholder="id_mobil" class="form-control" required>
                     <br />
@@ -217,6 +223,8 @@ require 'function.php';
                     <br />
                     <input type="text" name="bahan_bakar" placeholder="bahan_bakar" class="form-control" required>
                     <br />
+                    <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*" required>
+                    <br />
                     <button type="submit" name="insertmobil" class="btn btn-primary">Tambah</button>
                 </div>
             </form>
@@ -224,4 +232,5 @@ require 'function.php';
     </div>
 </div>
 <!-- INSERT -->
+
 </html>
