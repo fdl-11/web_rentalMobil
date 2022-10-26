@@ -73,6 +73,7 @@ require 'function.php';
                                             <th>nama_pegawai</th>
                                             <th>jobdesk</th>
                                             <th>no_telp</th>
+                                            <th>action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
