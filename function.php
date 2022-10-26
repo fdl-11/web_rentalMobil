@@ -13,14 +13,76 @@ if (isset($_POST['insertmobil'])) {
 	$jenis = $_POST['jenis'];
 	$warna = $_POST['warna'];
 	$bahan_bakar = $_POST['bahan_bakar'];
+	
+	// upload gambar
+	$gambar = upload();
+	if( !$gambar ) {
+		return false;
+	}
 
-	$tambahmobil = mysqli_query($conn, "insert into mobil (id_mobil, plat, merk, type, jenis, warna, bahan_bakar) values ('$id_mobil', '$plat', '$merk', '$type', '$jenis', '$warna', '$bahan_bakar')");
+	$tambahmobil = mysqli_query($conn, "insert into mobil (id_mobil, plat, merk, type, jenis, warna, bahan_bakar, gambar) values ('$id_mobil', '$plat', '$merk', '$type', '$jenis', '$warna', '$bahan_bakar', '$gambar')");
 	if ($tambahmobil) {
 		header('location:index.php');
 	} else {
 		echo "gagal";
 		header('location:index.php');
 	}
+}
+
+function upload() {
+
+	$namaFile = $_FILES['gambar']['name'];
+	$ukuranFile = $_FILES['gambar']['size'];
+	$error = $_FILES['gambar']['error'];
+	$tmpName = $_FILES['gambar']['tmp_name'];
+
+	// cek ada gambar yang diupload tidak
+	if( $error === 4 ) {
+		echo "
+			<script>
+				alert('pilih gambar dulu !');
+			</script>
+		";
+
+		return false;
+	}
+
+	// cek apakah yang diupload adalah gambar
+	$ekstensiGambarValid = ['jpg', 'jpeg', 'png', 'gif'];
+	$ekstensiGambar = explode('.', $namaFile);					
+	$ekstensiGambar = strtolower(end($ekstensiGambar));			
+																
+	// cek apakah ekstensi sesuai atau tidak
+	if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {	
+		echo "
+			<script>
+				alert('yang anda upload bukan gambar !');
+			</script>
+		";
+
+		return false;
+	}
+
+	// cek ukuran gambar
+	if( $ukuranFile > 1000000 ) {	// max 1 MB
+		echo "
+			<script>
+				alert('ukuran terlalu besar !');
+			</script>
+		";
+
+		return false;
+	}
+ 
+	// generate nama gambar baru agar tidak sama
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiGambar;
+
+	move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+
+	return $namaFileBaru;
+
 }
 
 //UPDATE MOBIL
@@ -32,8 +94,20 @@ if (isset($_POST['updatemobil'])) {
 	$jenis = $_POST['jenis'];
 	$warna = $_POST['warna'];
 	$bahan_bakar = $_POST['bahan_bakar'];
+	$gambarLama = $_POST['gambarLama'];
 
-	$updatembl = mysqli_query($conn, "update mobil set id_mobil='$id_mobil', plat='$plat', merk='$merk' , type='$type', jenis='$jenis', warna='$warna', bahan_bakar='$bahan_bakar' where mobil.id_mobil='$id_mobil' ");
+	// cek apa user pilih gambar baru tidak
+	if( $_FILES['gambar']['error'] === 4 ) {		// user tidak upload gambar baru
+		$gambar = $gambarLama;
+	} else {
+		$gambar = upload();
+
+		if( !$gambar ) {
+			return false;
+		}
+	}
+
+	$updatembl = mysqli_query($conn, "update mobil set id_mobil='$id_mobil', plat='$plat', merk='$merk' , type='$type', jenis='$jenis', warna='$warna', bahan_bakar='$bahan_bakar', gambar='$gambar' where mobil.id_mobil='$id_mobil' ");
 	if ($updatembl) {
 		header('location:index.php');
 	} else {
